@@ -1,0 +1,30 @@
+name: Deploy with Ansible to AWS
+
+on:
+  workflow_dispatch:
+    inputs:
+      cloud-provider:
+        description: "Choose the cloud provider"
+        required: true
+        type: choice
+        options:
+          - aws
+          - gcp
+          - azure
+        default: aws
+
+jobs:
+  bootstrap-and-deploy:
+    uses: subhamay-bhattacharyya-gha/bootstrap-ansible-wf/.github/workflows/ansible-bootstrap-oidc.yaml@main
+    with:
+      cloud-provider: ${{ inputs.cloud-provider }}
+      aws-region: us-east-1
+      python-version: "3.12"
+    secrets:
+      aws-role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+
+      
+      # - name: Run Ansible Playbook
+      #   run: |
+      #     ansible-playbook deploy.yml \
+      #       --extra-vars "environment=production"
