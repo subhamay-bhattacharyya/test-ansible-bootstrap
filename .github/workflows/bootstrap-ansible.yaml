@@ -15,7 +15,7 @@ on:
 
 jobs:
   bootstrap-and-deploy:
-    uses: subhamay-bhattacharyya-gha/bootstrap-ansible-wf/.github/workflows/ansible-bootstrap-oidc.yaml@main
+    uses: subhamay-bhattacharyya-gha/bootstrap-ansible-wf/.github/workflows/ansible-bootstrap-oidc.yaml@feature/GHA-0001-initial-release
     with:
       cloud-provider: ${{ inputs.cloud-provider }}
       aws-region: us-east-1
